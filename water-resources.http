@@ -1,0 +1,104 @@
+
+POST http://localhost:8081/api/resources
+Content-Type: application/json
+
+{
+  "name": "Vellore Main Reservoir",
+  "resourceType": "Reservoir",
+  "location": "Vellore",
+  "capacityM3": 100000,
+  "currentLevelM3": 75000,
+  "status": "ACTIVE"
+}
+
+###
+
+GET http://localhost:8081/api/resources
+
+###
+
+GET http://localhost:8081/api/resources/1
+
+###
+
+GET http://localhost:8081/api/resources/1/availability
+
+###
+
+PUT http://localhost:8081/api/resources/1
+Content-Type: application/json
+
+{
+  "name": "Vellore Main Reservoir",
+  "resourceType": "Reservoir",
+  "location": "Vellore",
+  "capacityM3": 100000,
+  "currentLevelM3": 60000,
+  "status": "ACTIVE"
+}
+
+###
+
+POST http://localhost:8081/api/usage
+Content-Type: application/json
+
+{
+  "consumerName": "Vellore Agriculture Farm",
+  "usageType": "Agriculture",
+  "location": "Vellore",
+  "quantityM3": 500,
+  "usageDate": "2026-10-10"
+}
+
+###
+
+GET http://localhost:8081/api/usage
+
+###
+
+GET http://localhost:8081/api/usage/1
+
+###
+
+POST http://localhost:8081/api/quality
+Content-Type: application/json
+
+{
+  "waterSource": "Vellore Main Reservoir",
+  "location": "Vellore",
+  "ph": 7.2,
+  "turbidity": 2.0,
+  "dissolvedOxygen": 7.0,
+  "testDate": "2026-10-10"
+}
+
+###
+
+GET http://localhost:8081/api/quality
+
+###
+
+GET http://localhost:8081/api/quality/1
+
+###
+
+POST http://localhost:8081/api/maintenance
+Content-Type: application/json
+
+{
+  "assetName": "Vellore Main Water Pump",
+  "issueType": "Leakage",
+  "location": "Vellore",
+  "description": "Water leaking near the main pump",
+  "priority": "HIGH",
+  "status": "REPORTED",
+  "reportedDate": "2026-10-10"
+}
+
+###
+
+GET http://localhost:8081/api/maintenance
+
+###
+
+GET http://localhost:8081/api/maintenance/1

@@ -1,4 +1,9 @@
+
 package com.water.water_management.repository;
 
-public class WaterUsageRepository {
+import com.water.water_management.entity.WaterUsage;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface WaterUsageRepository
+        extends JpaRepository<WaterUsage, Long> {
 }

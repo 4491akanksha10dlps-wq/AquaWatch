@@ -1,5 +1,5 @@
 
-package com.water.water_management.conroller;
+package com.water.water_management.controller;
 
 import com.water.water_management.entity.WaterResource;
 import com.water.water_management.service.WaterResourceService;
