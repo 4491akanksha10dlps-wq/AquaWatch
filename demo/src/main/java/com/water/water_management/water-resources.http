@@ -1,0 +1,16 @@
+
+### Create a water resource
+POST http://localhost:8080/api/resources
+Content-Type: application/json
+
+{
+  "name": "Vellore Main Reservoir",
+  "resourceType": "Reservoir",
+  "location": "Vellore",
+  "capacityM3": 100000,
+  "currentLevelM3": 75000,
+  "status": "ACTIVE"
+}
+
+### Get all water resources
+GET http://localhost:8080/api/resources
