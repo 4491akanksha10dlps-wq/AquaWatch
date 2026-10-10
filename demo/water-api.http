@@ -1,0 +1,13 @@
+
+### Add a water consumption record
+POST http://localhost:8081/api/water
+Content-Type: application/json
+
+{
+  "consumerName": "Rahul",
+  "address": "Vellore",
+  "waterUsageLiters": 150.0
+}
+
+### View all water consumption records
+GET http://localhost:8081/api/water
