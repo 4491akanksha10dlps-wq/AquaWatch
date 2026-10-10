@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.LinkedHashMap;
 
 @RestController
 @RequestMapping("/api/resources")
@@ -83,5 +85,46 @@ public class WaterResourceController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+
+    @GetMapping("/{id}/available-water")
+    public ResponseEntity<Double> getAvailableWater(@PathVariable Long id) {
+        return service.getResourceById(id)
+                .map(resource -> ResponseEntity.ok(
+                        service.calculateAvailableWater(resource)))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/{id}/remaining-capacity")
+    public ResponseEntity<Double> getRemainingCapacity(
+            @PathVariable Long id) {
+
+        return service.getResourceById(id)
+                .map(resource -> ResponseEntity.ok(
+                        service.calculateRemainingCapacity(resource)))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/{id}/availability-summary")
+    public ResponseEntity<Map<String, Object>> getAvailabilitySummary(
+            @PathVariable Long id) {
+
+        return service.getResourceById(id)
+                .map(resource -> {
+                    Map<String, Object> summary = new LinkedHashMap<>();
+
+                    summary.put("resourceName", resource.getName());
+                    summary.put("capacityM3", resource.getCapacityM3());
+                    summary.put("currentLevelM3", resource.getCurrentLevelM3());
+                    summary.put("remainingCapacityM3",
+                            service.calculateRemainingCapacity(resource));
+                    summary.put("availabilityPercentage",
+                            service.calculateAvailabilityPercentage(resource));
+                    summary.put("waterStatus",
+                            service.calculateWaterStatus(resource));
+
+                    return ResponseEntity.ok(summary);
+                })
+                .orElse(ResponseEntity.notFound().build());
+    }
 
 }

@@ -97,4 +97,24 @@ public class WaterResourceService {
         }
     }
 
+    public double calculateAvailableWater(WaterResource resource) {
+        if (resource.getCurrentLevelM3() == null) {
+            return 0.0;
+        }
+
+        return Math.max(0.0, resource.getCurrentLevelM3());
+    }
+
+    public double calculateRemainingCapacity(WaterResource resource) {
+        if (resource.getCapacityM3() == null
+                || resource.getCurrentLevelM3() == null) {
+            return 0.0;
+        }
+
+        return Math.max(
+                0.0,
+                resource.getCapacityM3() - resource.getCurrentLevelM3()
+        );
+    }
+
 }
